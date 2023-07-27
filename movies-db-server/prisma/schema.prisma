@@ -9,3 +9,35 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email     String @unique
+  password  String
+  firstName String?
+  lastName  String?
+  
+  movies    Movie[]
+
+  @@map("users")
+}
+
+model Movie {
+  id        Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  overview    String?
+  homepage    String
+  imgUrl      String
+  genre       String
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("movies")
+}
