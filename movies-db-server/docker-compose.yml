@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  postgres-db:
+    container_name: db_movies
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: movies
+    ports:
+      - 5435:5432
