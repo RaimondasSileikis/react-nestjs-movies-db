@@ -11,7 +11,7 @@ export default function Layout() {
     return(
         <div className="layout">
             <Header/>
-            <main className="">
+            <main className="box-shadow bg-accent bg-opacity-02">
                 <Outlet/>
             </main>
             <Footer/>
