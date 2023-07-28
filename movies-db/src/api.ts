@@ -5,7 +5,7 @@ import {
   ApiMovieData 
 } from "./interfaces";
 
-export const CLIENT_URL = 'http://localhost:3301';
+export const CLIENT_URL = 'http://localhost:3302';
 export const DB_API_URL = 'https://api.themoviedb.org/3';
 export const DB_API_IMG = 'https://image.tmdb.org/t/p/w500';
 
