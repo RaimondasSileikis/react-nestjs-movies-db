@@ -1,0 +1,38 @@
+.user-nav {
+    .user-initial {
+        position: relative;
+        display: flex;
+        align-items: center;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: hsl( var(--clr-black) / 0.5);
+        color: hsl( var(--clr-white));
+        cursor: pointer;
+    }
+    .user-detail {
+        position:absolute;
+        display: none;
+        justify-items: end;
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid hsl( var(--clr-black) / 0.2);
+        background-color: hsl( var(--clr-white));
+        color: hsl( var(--clr-black) / 0.5);
+    }
+    &:hover,
+    &:focus-within {
+        .user-initial {
+            color: hsl( var(--clr-accent));
+
+        }
+        .user-detail {
+            display: grid;
+            button {
+                &:hover {
+                    color:hsl( var(--clr-red) / 0.8);
+                }
+            }
+        }
+        
+    }
+}

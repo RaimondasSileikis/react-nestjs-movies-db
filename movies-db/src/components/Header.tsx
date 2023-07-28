@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import Logout from "../pages/login/Logout";
 
 export default function Header() {
 
@@ -24,14 +25,7 @@ export default function Header() {
                    My Movies
                 </NavLink>
             </nav>
-            <div className="flex gap-0">
-                    <NavLink to='signIn'>
-                        Log In
-                    </NavLink>
-                    <NavLink to='signUp'>
-                        Sign Up
-                    </NavLink>
-                </div>
+            <Logout/>
         </header>
     );
 }
