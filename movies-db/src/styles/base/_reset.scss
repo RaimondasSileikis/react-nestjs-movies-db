@@ -1,0 +1,111 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+picture {
+    margin: 0; 
+}
+
+h1,
+h2,
+h3,
+h4,
+i, 
+p {
+    font-weight: 400;
+}
+
+body {
+    font-family: var(--ff-serif);
+    font-size: var(--fs-400);
+    color: hsl(var(--clr-black));
+    background-color: hsl( var(--clr-white));
+    line-height: 1.5rem;
+    overflow-x:hidden;
+}
+
+img,
+picture {
+    display: block-inline;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 400;
+    border-radius: 4px;
+    --text-opacity:0.8;
+}
+
+a:hover {
+    font-weight: bold;
+    --bg-opacity:1;
+    --text-opacity:1;
+}
+
+button {
+    font: inherit;
+    background-color: inherit;
+    border: none;
+    border-radius: 4px;
+    line-height: 1.5em;
+    padding: 0 0.5em;
+    --bg-opacity:0.8;
+    --text-opacity:0.8;
+}
+
+button:hover {
+    --bg-opacity:1;
+    --text-opacity:1;
+    cursor:pointer;
+}
+
+textarea,
+select,
+input {
+    font: inherit;
+    background-color:white;
+    color: inherit;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    width: 200px;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { 
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" fill="inherit" height="12" viewBox="0 0 24 24" width="12" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M0 0h24v24H0z" fill="none"/><path d="M17.29 6.29l-1.42-1.42L12 10.59 7.13 5.71 5.71 7.13 10.59 12l-4.88 4.88 1.42 1.42L12 13.41l4.88 4.88 1.42-1.42L13.41 12l4.88-4.88z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.8em;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {  
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+}
