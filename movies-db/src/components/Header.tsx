@@ -24,7 +24,14 @@ export default function Header() {
                    My Movies
                 </NavLink>
             </nav>
-            <h3>Login</h3>
+            <div className="flex gap-0">
+                    <NavLink to='signIn'>
+                        Log In
+                    </NavLink>
+                    <NavLink to='signUp'>
+                        Sign Up
+                    </NavLink>
+                </div>
         </header>
     );
 }
