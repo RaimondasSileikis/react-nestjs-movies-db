@@ -1,0 +1,13 @@
+.header * {
+    padding: 0 0.5em;
+    right: 0;
+}
+
+.header {
+    padding: 1rem 0;
+    .active {
+        font-weight: bold;
+        text-decoration: underline;
+        color: hsl( var(--clr-white));
+    }
+}
