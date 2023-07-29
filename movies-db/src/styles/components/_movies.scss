@@ -1,0 +1,35 @@
+.movies-list-container {
+    .movie-genre {
+        border-radius: 4px;
+        line-height: 1.5em;
+        padding: 0 0.5em;
+        text-transform: capitalize;
+    }
+    .movie-genre:hover,
+    .movie-genre.selected {
+        color: hsl( var(--clr-white));
+    }
+    .movie-genre.action:hover,
+    .movie-genre.action.selected {
+        background-color: hsl( var(--clr-black) / 0.6);
+    }
+    .movie-genre.comedy:hover,
+    .movie-genre.comedy.selected {
+        background-color: hsl( var(--clr-green) / 0.8);;
+    }
+    .movie-genre.drama:hover,
+    .movie-genre.drama.selected {
+       background-color: hsl( var(--clr-blue) / 0.8);
+    }
+    .movie-genre.animation:hover,
+    .movie-genre.animation.selected {
+        background-color: hsl( var(--clr-yellow) / 0.8);
+    }
+    .clear-filter {
+        color: hsl( var(--clr-red) / var(--text-opacity, 1));
+    }
+    .clear-filter:hover {
+        color: hsl( var(--clr-white));
+        background-color: hsl( var(--clr-red) / var(--text-opacity, 0.8));
+    }
+}

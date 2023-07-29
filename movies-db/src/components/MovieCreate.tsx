@@ -45,15 +45,14 @@ export async function action({ request }: {request: Request}) {
             state
         )
     } catch(err) {
-        return {error: err, pathname, search}
+        return {error: err, state}
     };
 }
 
 export default function MovieCreate() {
     const actionData = useActionData() as {
         error: ServerErrorResponse, 
-        pathname: string, 
-        search: string
+        state: RedirectState
     };
     const actionDataError = actionData?.error;
     const { state } = useLocation();
@@ -64,8 +63,8 @@ export default function MovieCreate() {
         imgUrl, 
         genre 
     } = state?.data || {};
-    const search = ( state?.search || actionData?.search ) || '';
-    const pathname = ( state?.pathname || actionData?.pathname ) || '';
+    const search = ( state?.search || actionData?.state?.search ) || '';
+    const pathname = ( state?.pathname || actionData?.state?.pathname ) || '';
 
 
     return(
