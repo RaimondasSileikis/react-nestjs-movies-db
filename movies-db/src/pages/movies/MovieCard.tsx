@@ -16,12 +16,12 @@ export async function loader({ request, params }: { request: Request, params: Pa
 }
 
 export default function MovieCard() {
-    const { 
-        state: { 
-            search = '', 
-            genre_type = 'all'
-        } = {} 
-    } = useLocation();
+const { 
+    pathname,
+    search = '', 
+    genre_type
+} = (useLocation().state || {});
+
     const { 
         title,
         overview,
@@ -35,24 +35,24 @@ export default function MovieCard() {
         <div className="flow container">
             <div className="flex flex-space-between">
                 <Link
-                    to={`..${search}`} 
+                    to={`${pathname + search}`} 
                     relative='path'
                 >
-                    &larr; Back to <span className="capitalize text-blue">{genre} </span>
+                    &larr; Back to <span className="capitalize text-blue">{genre_type} </span>
                     movies
                 </Link>
                 <div className="flex">
                     <Link 
                         className="text-green" 
                         to="edit" 
-                        state={{ search, genre_type}}
+                        state={{ pathname, search, genre_type}}
                     >
                         Edit
                     </Link>
                     <Link 
                         className="text-red" 
                         to="delete" 
-                        state={{ search, genre_type}}
+                        state={{ pathname, search, genre_type}}
                     >
                         Delete
                     </Link>
@@ -81,5 +81,4 @@ export default function MovieCard() {
                 </div>
             </div>
         </div>
-    );
-}
+    )

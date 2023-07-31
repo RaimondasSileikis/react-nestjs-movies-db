@@ -10,12 +10,6 @@ import { requireAuth } from "../utils";
 import { ServerErrorResponse } from "../interfaces";
 import ActionDataError from "./ActionDataError";
 
-type RedirectState = {
-    pathname: string;
-    search: string;
-    status?: number;
-}
-
 export async function loader({ request}: {request: Request}) {
     await requireAuth(request)
     return null
@@ -30,8 +24,7 @@ export async function action({ request }: {request: Request}) {
     const genre = (createMovieFormData.get('genre') ?? '') as string;
     const search = (createMovieFormData.get('search') ?? '') as string;
     const pathname = (createMovieFormData.get('pathname') ?? '') as string;
-    const state:RedirectState = { pathname, search };
-        
+   
     try {
         await createMovie({
             title, 
@@ -41,18 +34,18 @@ export async function action({ request }: {request: Request}) {
             genre
         })
         return redirect(
-            `${pathname + search }`, 
-            state
+            `${pathname + search }`
         )
     } catch(err) {
-        return {error: err, state}
+    return {error: err, pathname, search}
     };
 }
 
 export default function MovieCreate() {
     const actionData = useActionData() as {
         error: ServerErrorResponse, 
-        state: RedirectState
+        pathname: string, 
+        search: string
     };
     const actionDataError = actionData?.error;
     const { state } = useLocation();
@@ -63,9 +56,8 @@ export default function MovieCreate() {
         imgUrl, 
         genre 
     } = state?.data || {};
-    const search = ( state?.search || actionData?.state?.search ) || '';
-    const pathname = ( state?.pathname || actionData?.state?.pathname ) || '';
-
+    const search = ( state?.search || actionData?.search ) || '';
+    const pathname = ( state?.pathname || actionData?.pathname ) || '';
 
     return(
         <div className="flow container">

@@ -44,7 +44,7 @@ export default function Movies() {
                     className="container bg-accent bg-opacity-00"
                     key={id}
                     to={`${id}`} 
-                    state={{ search: `?${searchParams.toString()}`, genre_type: genreFilter}}
+                    state={{pathname, search: `?${searchParams.toString()}`, genre_type: genreFilter ?? 'all'}}
                 >
                     <div className="flow flex flex-center-align">
                         <h4>{i + 1}.</h4>
@@ -59,7 +59,7 @@ export default function Movies() {
             <>
                 <Link className="flex flex-right text-green "
                     to="../create" 
-                    state={{ pathname, search: `?${searchParams.toString()}`, genre_type: genreFilter}}
+                    state={{ pathname, search: `?${searchParams.toString()}`}}
                 >Create new
                 </Link>
                     {['action', 'comedy', 'drama', 'animation'].map(type => (
