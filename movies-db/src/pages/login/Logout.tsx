@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
-
 export default function Logout() {
     const [user, setUser] = useState<string | null>(null);
     const loggedInUser = localStorage.getItem('user');

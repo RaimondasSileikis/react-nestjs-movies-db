@@ -54,7 +54,6 @@ export default function MovieDelete() {
                     </Link>
                 </button>
             </div>
-           
         </div>
     );
 }
