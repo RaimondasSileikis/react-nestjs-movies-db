@@ -16,11 +16,11 @@ export async function loader({ request, params }: { request: Request, params: Pa
 }
 
 export default function MovieCard() {
-const { 
-    pathname,
-    search = '', 
-    genre_type
-} = (useLocation().state || {});
+    const { 
+        pathname,
+        search = '', 
+        genre_type
+    } = (useLocation().state || {});
 
     const { 
         title,
@@ -82,3 +82,4 @@ const {
             </div>
         </div>
     )
+}
