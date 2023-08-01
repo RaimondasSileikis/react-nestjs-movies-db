@@ -3,10 +3,13 @@ import {
     redirect,
     Form, 
     useLocation, 
-    Link
+    Link,
+    useActionData
 } from "react-router-dom"
 import { deleteMovie } from "../api";
 import { requireAuth } from "../utils";
+import { ServerErrorResponse } from "../interfaces";
+import ActionDataError from "./ActionDataError";
 
 export async function loader({ request, params}: { request: Request, params: Params }) {
     await requireAuth(request);
@@ -24,8 +27,7 @@ export async function action({ params, request }: { params:Params, request: Requ
         return redirect(`${pathname + search}`
         )
     } catch(err) {
-        console.error(err);
-        return err;
+        return {err};
     };
 }
 
@@ -35,6 +37,10 @@ export default function MovieDelete() {
         search = '', 
         genre_type
     } = (useLocation().state || {});
+    const actionData = useActionData() as {
+        err: ServerErrorResponse
+    };
+    const actionDataError = actionData?.err;
    
     return (
         <div className="flow container grid grid-items-center">
@@ -53,6 +59,11 @@ export default function MovieDelete() {
                         No
                     </Link>
                 </button>
+            </div>
+            <div>
+              {actionDataError && (
+                <ActionDataError error={actionDataError}/>
+                )}  
             </div>
         </div>
     );

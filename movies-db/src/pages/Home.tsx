@@ -10,7 +10,7 @@ export default function Home() {
             <h2 className="flex flex-center container">Welcome to My Awesome Website</h2>
             <div className="flow">
                 <h3>Discover amazing movies, create your own collection, and more!</h3>
-                <Link className=" text-blue ff-sans-normal" to="signIn">
+                <Link className=" text-blue ff-sans-normal" to="moviesdb">
                     Get Started &rarr;
                 </Link>
             </div>
