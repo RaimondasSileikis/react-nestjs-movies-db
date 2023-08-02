@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { requireAuth } from "../utils";
 
 export async function loader({ request }: { request: Request}) {
-    requireAuth(request);
+    await requireAuth(request);
     return null;
 }
 

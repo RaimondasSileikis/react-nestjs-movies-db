@@ -27,7 +27,7 @@ export async function action({ params, request }: { params:Params, request: Requ
         return redirect(`${pathname + search}`
         )
     } catch(err) {
-        return {err};
+        return err;
     };
 }
 
@@ -37,10 +37,7 @@ export default function MovieDelete() {
         search = '', 
         genre_type
     } = (useLocation().state || {});
-    const actionData = useActionData() as {
-        err: ServerErrorResponse
-    };
-    const actionDataError = actionData?.err;
+    const actionDataError = useActionData() as ServerErrorResponse;
    
     return (
         <div className="flow container grid grid-items-center">
