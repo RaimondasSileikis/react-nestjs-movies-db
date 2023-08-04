@@ -23,6 +23,7 @@ export default function Movies() {
     const { pathname } = useLocation()
     const moviesPromise = useLoaderData() as {movies: MovieData[] };
     const genreFilter = searchParams.get('genre_type');
+    const sortTitleFilter = searchParams.get('sort_title');
 
     function handleFilterChange(key: string, value: string | null) {
         setSearchParams(prevParams => {
@@ -34,9 +35,21 @@ export default function Movies() {
     };
 
     function renderMovies (movies: MovieData[]) {
-        const displayedMovies = genreFilter
-            ? movies.filter(movie => movie.genre === genreFilter)
-            : movies
+        const genreFilteredMovies = genreFilter
+        ? movies.filter(movie => movie.genre === genreFilter)
+        : movies
+
+    const displayedMovies = sortTitleFilter
+        ? [...genreFilteredMovies].sort((a, b) =>
+            sortTitleFilter === "up"
+                ? a.title[0].toLowerCase() < b.title[0].toLowerCase()
+                    ? -1
+                    : 1
+                : b.title[0].toLowerCase() < a.title[0].toLowerCase()
+                    ? -1
+                    : 1
+            )
+        : genreFilteredMovies
 
         const moviesElements = displayedMovies
             .map(({ id, title, imgUrl, genre }, i) => (
@@ -57,7 +70,7 @@ export default function Movies() {
 
     return (
             <>
-                <Link className="flex flex-right text-green "
+                <Link className="flex flex-right text-green"
                     to="../create" 
                     state={{ pathname, search: `?${searchParams.toString()}`}}
                 >Create new
@@ -71,13 +84,33 @@ export default function Movies() {
                         {type}
                         </button>
                     ))}
-                    {genreFilter && (
-                        <button 
-                            onClick={() => handleFilterChange('genre_type', null)} 
-                            className="clear-filter">
+                    <div className="container flex flex-space-between">
+                        <div className="flex">
+                            <button
+                                className="bg-blue text-white" 
+                                onClick={() => handleFilterChange('sort_title', 'up')}       
+                            >
+                            &#x2191;
+                            </button>
+                            <button
+                                className="bg-blue text-white"
+                                onClick={() => handleFilterChange('sort_title', 'down')}
+                            >
+                            &#x2193;
+                            </button>
+                        </div>
+                        {(genreFilter || sortTitleFilter) && (
+                        <button
+                            className="clear-filter"
+                            onClick={() => {
+                                handleFilterChange('genre_type', null);
+                                handleFilterChange('sort_title', null);
+                            }}
+                        >
                         Clear filter
                         </button>
                     )}
+                    </div>
                 <div>{moviesElements}</div>
             </>
         )
